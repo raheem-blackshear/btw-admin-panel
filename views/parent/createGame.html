@@ -1,0 +1,1008 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="ibox float-e-margins shadow">
+                <div class="ibox-title">
+                    <h5>Create Game</h5>
+                    <div ibox-tools></div>
+                </div>
+                <div class="ibox-content">
+                    <form novalidate name="gameForm" ng-submit="createGame(game, gameForm.$valid)" autocomplete="off">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Name:</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <input  capitalize-first type="text" name="gameName" ng-model="game.name" placeholder="Enter Game Name" required>
+                                                <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.gameName.$dirty && gameForm.gameName.$invalid">
+                                                    <small ng-show="gameForm.gameName.$error.required">
+                                                        Game name is required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">paused?:</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <div class="material-switch m-t-10">
+                                                    <input  type="checkbox" id="paused" ng-model="game.paused" />
+                                                    <label for="paused"></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Min Players:</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <input type="text" name="minPlayer" ng-model="game.minPlayer" numbers-only placeholder="Enter Min Players" required>
+                                                <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.minPlayer.$dirty && gameForm.minPlayer.$invalid">
+                                                    <small ng-show="gameForm.minPlayer.$error.required">
+                                                        Min Players is required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Max Players:</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <input type="text" name="maxPlayer" style="display: none">
+                                                <input type="text" name="maxPlayer" ng-model="game.maxPlayer" placeholder="Enter Max Players" numbers-only required>
+                                                <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.maxPlayer.$dirty && gameForm.maxPlayer.$invalid">
+                                                    <small ng-show="gameForm.maxPlayer.$error.required">
+                                                        Max Players is required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Password Protect:</span>
+                                            </div>
+
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <div class="row">
+                                                    <div class="col-sm-2 col-lg-2 col-md-2 col-xs-2">
+                                                        <div class="material-switch m-t-10">
+                                                            <input id="pwdPro" type="checkbox" ng-model="game.isProtected" />
+                                                            <label for="pwdPro"></label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                        <div ng-repeat="data in tempPassword track by $index"  ng-if="game.isProtected">
+                                                            <input type="text" name="password{{$index}}" ng-model="game.password[$index]" autocomplete="off" placeholder="Enter Password"
+                                                                    required>
+                                                            <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.password{{$index}}.$dirty && gameForm.password{{$index}}.$invalid">
+                                                                <small ng-show="gameForm.password{{$index}}.$error.required">
+                                                                    Password is required.
+                                                                </small>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+
+                                                    <div class="col-sm-1 col-lg-1 col-md-1 col-xs-1">
+                                                        <a href="" ng-click="addPassword()" class="plus-icon">
+                                                            <i class="fa fa-plus"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Lock Order:</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <div class="material-switch m-t-10">
+                                                    <input id="lockOrder" type="checkbox" ng-model="game.isOrderLock" />
+                                                    <label for="lockOrder"></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Date Range:</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <input date-range-picker name="date" class="date-picker" type="text" ng-model="datePicker" placeholder="Enter Date Range"
+                                                        min="mindate" required/>
+                                                <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.date.$dirty && gameForm.date.$invalid">
+                                                    <small ng-show="gameForm.date.$error.required">
+                                                        Date Range is required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Image
+                                                    <i ng-show="gameForm.file.$error.required" class="text-danger">(required)</i>
+                                                </span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-8 col-md-9 col-xs-9 file-style">
+                                                <button class="button button-stable button-clear addmore-btn" type="file" ngf-select="uploadImage($file,$invalidFiles)"
+                                                        ngf-accept="'image/*'">
+                                                    <i class="glyphicon glyphicon-picture"></i>
+                                                </button>
+
+                                                <!--<input type="file" ngf-select ng-model="picFile" name="file" accept="image/*"-->
+                                                <!--ngf-max-size="2MB" required ngf-model-invalid="errorFile"-->
+                                                <!--class="file" id="file">-->
+                                                <div class="file-row-1">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-picture"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="file-row-2">
+                                                    <input type="text" class="form-control input-lg" disabled placeholder="Upload Image" ng-model="gameImage.thumbnail">
+                                                </div>
+                                                <!--<div class="file-row-3">-->
+                                                <!--<button class="browse input-lg" type="button" file-open>-->
+                                                <!--<i class="glyphicon glyphicon-search"></i>-->
+                                                <!--</button>-->
+                                                <!--</div>-->
+                                                <div class="white-error-email" ng-show="gameForm.file.$error.maxSize">
+                                                    <small>File too large {{errorFile.size / 1000000|number:1}}MB: max 2M</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Timer Status:</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <div class="material-switch m-t-10">
+                                                    <input  type="checkbox" id="timerStatus" ng-model="game.timerStatus" />
+                                                    <label for="timerStatus"></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" ng-if="game.timerStatus">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Timer:</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <input type="text" name="timer" ng-model="game.timer" placeholder="In seconds" numbers-only required>
+                                                <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.timer.$dirty && gameForm.timer.$invalid">
+                                                    <small ng-show="gameForm.timer.$error.required">
+                                                        Timer is required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Level 1:</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <div class="material-switch">
+                                                    <select class="form-control"  ng-model="levelOne" ng-change="change1(levelOne)"
+                                                            ng-options="item.name for item in list1">
+                                                        <option value="">Please select</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Level 2</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <div class="material-switch">
+                                                    <select class="form-control" ng-change="change2(levelTwo)" ng-show="levelOne" ng-model="levelTwo"
+                                                            ng-options="item.name for item in list2">
+                                                        <option value="">Please select</option>
+                                                    </select>
+                                                    <select class="form-control"  ng-hide="levelOne" disabled ng-model="levelTwo">
+                                                        <option value="">Please select level 1  </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Level 3</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <div class="material-switch">
+                                                    <select class="form-control" ng-show="levelOne && levelTwo" ng-model="levelThree"
+                                                            ng-options="item.name for item in list3">
+                                                        <option value="">Please select</option>
+                                                    </select>
+                                                </div>
+                                                <div class="material-switch">
+                                                    <select class="form-control" disabled ng-hide="levelOne && levelTwo" ng-model="levelThree">
+                                                        <option value="">Please select level 2</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Location:</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <input type="text" id="searchTextField" placeholder="Location" class="signup-form-input" ng-model="game.location" details="game.geometry"
+                                                        autocomplete="on" runat="server" name="location" required />
+                                                <input type="hidden" id="city2" name="city2" />
+
+                                                <div class="top-m-10 display-none">
+                                                    <label>Latitude</label>
+                                                    <input type="hidden" id="cityLat" name="cityLat" />
+                                                </div>
+
+                                                <div class="top-m-10 display-none">
+                                                    <label>Longitude</label>
+                                                    <input type="hidden" id="cityLng" name="cityLng" />
+                                                </div>
+
+                                                <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.location.$dirty && gameForm.location.$invalid">
+                                                    <small ng-show="gameForm.location.$error.required">
+                                                        Location is required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                        <span class="tag">Description</span>
+                                    </div>
+                                    <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9 fr-view">
+                                        <!-- <summernote  ng-model="game.description" config="options"> </summernote> -->
+                                        <textarea froala="froalaOptions" ng-model="game.description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                                <div style="font-size: 16px;border-bottom: 3px solid white;margin-bottom: 42px;padding-bottom: 10px;">Challenges</div>
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                <button class="theme-btn" type="button" ng-click="addChallenge()">Add</button>
+                            </div>
+                        </div>
+
+
+                        <div ng-repeat="data in challenges track by $index" ng-hide="data.is_deleted" class="challenge-arr" ng-mouseover="showDelete($index)" ng-mouseleave="hideDelete($index)">
+                            <button class="pull-right delete-game" type="button" ng-class="{ 'display-none': data.classes , 'display-block': data.classes }"
+                                    ng-click="deleteGame($index,data)">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="row form-group">
+                                        <div class="col-sm-5 col-lg-5 col-md-5 col-xs-5">
+                                            <span class="tag">Item Number:</span>
+                                        </div>
+
+                                        <div class="col-sm-6 col-lg-6 col-md-6 col-xs-6">
+                                            <span style="font-size: 19px;position: relative; top: 6px;">{{$index + 1}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="row form-group">
+                                        <div class="col-sm-2 col-lg-2 col-md-2 col-xs-4">
+                                            <span class="tag">Name:</span>
+                                        </div>
+                                        <div class="col-sm-10 col-lg-10 col-md-10 col-xs-8">
+
+                                            <!-- <summernote  ng-model="data.name" config="options" name="name{{$index}}" required> </summernote> -->
+                                            <textarea froala = "froalaOptions" ng-model="data.name" name="name{{$index}}" required></textarea>
+
+                                            <!--<input type="text" name="name{{$index}}" ng-model="data.name" placeholder="Enter Challenge Name" required>-->
+                                            <div class="white-error-email" ng-show="gameForm.$submitted && gameForm.name{{$index}}.$dirty && gameForm.name{{$index}}.$invalid">
+                                                <small ng-show="gameForm.name{{$index}}.$error.required">
+                                                    Challenge Name is required.
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="row form-group">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 col-xs-5">
+                                            <span class="tag">Challenge Type:</span>
+                                        </div>
+
+                                        <div class="col-sm-5 col-lg-5 col-md-5 col-xs-5">
+                                            <select name="challengeType" class="form-control" ng-model="data.challengeType" ng-change="deleteChallengeObj(data.challengeType,data)"
+                                                    required>
+                                                <option value="" selected disabled>Please select</option>
+                                                <option value="Image">Image</option>
+                                                <option value="Location">Location</option>
+                                                <option value="QR code">QR Code</option>
+                                                <option value="Text">Text</option>
+                                                <option value="Video">Video</option>
+                                            </select>
+                                            <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.challengeType.$dirty && gameForm.challengeType.$invalid">
+                                                <small ng-show="gameForm.challengeType.$error.required">
+                                                    Challenge Type is required.
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-sm-12 col-lg-12 col-md-12">
+                                    <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                        <span class="tag">Details: </span>
+                                    </div>
+                                    <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                        <textarea froala="froalaOptions" ng-model="data.details" required></textarea>
+                                        
+                                        <div class="white-error-email" ng-show="gameForm.$submitted && gameForm.details.$dirty && gameForm.details.$invalid">
+                                            <small ng-show="gameForm.details.$error.required">
+                                                Challenge Details is required.
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                    <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                        <span class="tag">Details Image:</span>
+                                    </div>
+                                    <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9 file-style">
+                                        <div class="col-sm-10 relative">
+                                            <div class="file-row-12">
+                                                <input type="text" class="form-control input-lg" name="media" disabled placeholder="Upload Image" ng-model="data.image1.thumbnail">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-2">
+                                            <button class="button button-stable button-clear addmore-btn" type="file" ngf-select="uploadFiles1($file,$invalidFiles, $index)"
+                                                    ngf-accept="'image/*'">
+                                                <i class="glyphicon glyphicon-picture"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-sm-2 col-lg-2 col-md-2 col-xs-5 ">
+                                    <span class="tag">Challenge Points:</span>
+                                </div>
+
+                                <div class="col-sm-4 col-lg-4 col-md-4 col-xs-6">
+                                    <input type="text" name="points" ng-model="data.points" placeholder="Enter Challenge Points" numbers-only ng-minlength="2"
+                                            ng-maxlength="5" required>
+                                    <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.points.$dirty && gameForm.points.$invalid">
+                                        <small ng-show="gameForm.points.$error.required">
+                                            Challenge Points is required.
+                                        </small>
+                                        <small ng-show="gameForm.points.$error.maxlength">
+                                            Challenge Points should be of maximum 5 digits.
+                                        </small>
+                                        <small ng-show="gameForm.points.$error.minlength">
+                                            Challenge Points should be of minimum 2 digits.
+                                        </small>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-sm-2 col-lg-2 col-md-2 col-xs-5 ">
+                                    <span class="tag">Timer status:</span>
+                                </div>
+                                <div class="col-sm-4 col-lg-4 col-md-4 col-xs-6">
+                                    <div class="material-switch m-t-10">
+                                        <input  type="checkbox" id="data{{$index}}" ng-model="data.timerStatus" />
+                                        <label for="data{{$index}}"></label>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-2 col-lg-2 col-md-2 col-xs-5" ng-if="data.timerStatus">
+                                    <span class="tag">Timer:</span>
+                                </div>
+
+                                <div class="col-sm-4 col-lg-4 col-md-4 col-xs-6" ng-if="data.timerStatus">
+                                    <input type="text" name="timer" ng-model="data.timer" placeholder="In seconds" numbers-only required>
+                                    <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.timer.$dirty && gameForm.timer.$invalid">
+                                        <small ng-show="gameForm.timer.$error.required">
+                                            Timer is required.
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" ng-if="data.challengeType =='QR code'">
+                                    <div class="row form-group">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                            <span class="tag">QR Code:</span>
+                                        </div>
+                                        <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                            <input type="text" name="qrCode" ng-model="data.qrCode" placeholder="Enter QR Code" required ng-if="data.challengeType =='QR code'">
+                                            <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.qrCode.$dirty && gameForm.qrCode.$invalid">
+                                                <small ng-show="gameForm.qrCode.$error.required">
+                                                    QR Code is required.
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" ng-show="data.challengeType =='Location'">
+                                    <div class="row form-group">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                            <span class="tag">Location Type:</span>
+                                        </div>
+                                        <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                            <select name="locationType" class="form-control" ng-model="data.locationType" ng-change=changeLocObj(data.locationType)
+                                            >
+                                                <!--<option value="" selected disabled>Location type</option>-->
+                                                <option value="Address">Address</option>
+                                                <option value="Lat_Long">Lattitude/Longitude</option>
+                                            </select>
+                                            <div class="white-error-email" ng-show="gameForm.$submitted || !data.locationType">
+                                                <!--<div class="white-error-email" ng-show="gameForm.$submitted || gameForm.challengeType.$dirty && gameForm.challengeType.$invalid">-->
+                                                <!--<small ng-show="gameForm.challengeType.$error.required">-->
+                                                <small>
+                                                    Location Type is required.
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row " ng-if="data.locationType == 'Address' && data.challengeType=='Location'" ng-show="data.challengeType=='Location'">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                            <span class="tag">Location:</span>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="location" ng-model="data.location" details="data.geometry" placeholder="Enter Location" ng-autocomplete
+                                                    required ng-if="data.challengeType =='Location'" >
+                                            <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.location.$dirty && gameForm.location.$invalid">
+                                                <small ng-show="gameForm.location.$error.required">
+                                                    Location is required.
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                            <span class="tag">Distance (m):</span>
+                                        </div>
+                                        <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                            <input type="number" name="distance" ng-model="data.distanceDiff" placeholder="Distance(m)" required ng-if="data.challengeType =='Location'"  ng-show="data.challengeType=='Location'">
+                                            <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.distance.$dirty && gameForm.distance.$invalid">
+                                                <small ng-show="gameForm.distance.$error.required">
+                                                    Distance is required.
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" ng-if="data.locationType == 'Lat_Long' && data.challengeType=='Location'">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <span class="tag">Lat:</span>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <input type="text" name="lat" ng-model="data.lat" placeholder="Lattitude">
+                                                    <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.lat.$dirty && gameForm.lat.$invalid">
+                                                        <small ng-show="gameForm.lat.$error.required">
+                                                            Lattitude is required.
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <span class="tag">Long:</span>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <input type="text" name="long" ng-model="data.long" placeholder="Longitude">
+                                                    <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.long.$dirty && gameForm.long.$invalid">
+                                                        <small ng-show="gameForm.long.$error.required">
+                                                            Longitude is required.
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                            <span class="tag">Distance (m):</span>
+                                        </div>
+                                        <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                            <input type="number" name="distance" ng-model="data.distanceDiff" placeholder="Distance(m)" required ng-if="data.challengeType =='Location'">
+                                            <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.distance.$dirty && gameForm.distance.$invalid">
+                                                <small ng-show="gameForm.distance.$error.required">
+                                                    Distance is required.
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" ng-if="data.challengeType =='Image'">
+                                    <div class="row form-group">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                            <span class="tag">Keywords:</span>
+                                        </div>
+                                        <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                            <div class="row">
+                                                <div class="col-sm-1 col-lg-1 col-md-1 col-xs-1">
+                                                    <!--<label class="control control&#45;&#45;checkbox" ng-init="cloned?data.isKeyword:data.isKeyword=true;">-->
+                                                    <label class="control control--checkbox">
+                                                        <input type="checkbox" ng-model="data.isKeyword">
+                                                        <div class="control__indicator"></div>
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-11 col-lg-11 col-md-11 col-xs-11" ng-if="data.isKeyword">
+                                                    <tags-input name="keywords" replace-spaces-with-dashes="false" ng-model="data.keywords" placeholder="Add Keywords and press enter"
+                                                                ng-if="data.isKeyword" min-length="0"  min-tags="1"></tags-input>
+                                                    <!--<div class="white-error-email" ng-show="gameForm.$submitted || gameForm.keywords.$dirty && gameForm.keywords.$invalid">-->
+                                                    <!--<small ng-show="gameForm.keywords.$error.required">-->
+                                                    <!--<small  class="text-danger" ng-show="!data.keywords.length">-->
+                                                    <small  class="text-danger" ng-show="gameForm.keywords.$error.minTags">
+                                                        Keywords are required.
+                                                    </small>
+                                                    <!--</div>-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" ng-if="data.challengeType =='Image'">
+                                    <div class="row form-group">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                            <span class="tag">Public:</span>
+                                        </div>
+                                        <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                            <div class="row">
+                                                <div class="col-sm-1 col-lg-1 col-md-1 col-xs-1">
+                                                    <!--<label class="control control&#45;&#45;checkbox" ng-init="cloned?data.isShown:data.isShown=true;">-->
+                                                    <label class="control control--checkbox">
+                                                        <input type="checkbox" ng-model="data.isShown">
+                                                        <div class="control__indicator"></div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="data.challengeType =='Text'">
+                                    <div class="row form-group">
+                                        <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                            <div class="row">
+                                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                                    <div class="row">
+                                                        <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                            <span class="tag">Answers:</span>
+                                                        </div>
+                                                        <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9 textAnswer">
+                                                            <tags-input name="answers" min-length="0" replace-spaces-with-dashes="false" ng-model="data.textAnswer"
+                                                                        placeholder="Add Answers and press enter">
+                                                            </tags-input>
+                                                            <small  class="text-danger" ng-show="gameForm.answers.$error.minTags">
+                                                                Keywords are required.
+                                                            </small>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-sm-8 col-md-8 col-xs-8">
+                                    <button class="hint-class" type="button" disabled>Add Custom Text fields below</button>
+                                </div>
+                            </div>
+
+                            <!--<div class="row">-->
+                                <!--<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">-->
+                                    <!--<div class="row form-group">-->
+                                        <!--<div class="col-sm-2 col-lg-2 col-md-2 col-xs-2">-->
+                                            <!--<span class="tag">Title:</span>-->
+                                        <!--</div>-->
+                                        <!--<div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">-->
+                                            <!--<input type="text" name="dialogue" ng-model="data.customDialog.title" placeholder="Enter message title">-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="row form-group">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                            <span class="tag">Title:</span>
+                                        </div>
+                                        <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                            <!-- <summernote  ng-model="data.customDialog.title" config="options"> </summernote> -->
+                                            <textarea froala="froalaOptions" ng-model="data.customDialog.title" ></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="row form-group">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                            <span class="tag">Description:</span>
+                                        </div>
+                                        <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                            <!-- <summernote  ng-model="data.customDialog.description" config="options"> </summernote> -->
+                                            <textarea froala="froalaOptions" ng-model="data.customDialog.description"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                    <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                        <span class="tag">Image Description:</span>
+                                    </div>
+                                    <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9 file-style">
+                                        <div class="col-sm-10 relative">
+                                            <div class="file-row-12">
+                                                <input type="text" class="form-control " name="media" disabled placeholder="Upload Image" ng-model="data.descriptionImage.thumbnail">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-2">
+                                            <button class="button button-stable button-clear addmore-btn" type="file" ngf-select="uploadFiles($file,$invalidFiles, $index)"
+                                                    ngf-accept="'image/*'">
+                                                <i class="glyphicon glyphicon-picture"></i>
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                    <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">
+                                        <span class="tag">Possible Attempts:</span>
+                                    </div>
+
+                                    <div class="col-sm-8 col-lg-8 col-md-8 col-xs-8 file-style">
+                                        <input numbers-only type="text" name="attempts" ng-model="data.possibleAttemp" id="attempt" placeholder="Enter Challenge Attempts" required>
+                                        <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.attempts.$dirty && gameForm.attempts.$invalid">
+                                            <small ng-show="gameForm.attempts.$error.required">
+                                                Attempt is required.
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="row form-group">
+                                        <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+                                            <button class="hint-class" type="button" disabled>Add hints below</button>
+                                            <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.hint.$dirty && gameForm.hint.$invalid">
+                                                <small ng-show="gameForm.hint.$error.required">
+                                                    Challenge Hint is required.
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div ng-if="data.onOff == true">
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">
+                                                <span class="tag">Type:</span>
+                                            </div>
+                                            <div class="col-sm-8 col-lg-8 col-md-8 col-xs-8">
+                                                <input type="text" readonly value="Easy">
+                                                <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.hintype1.$dirty && gameForm.hintype1.$invalid">
+                                                    <small ng-show="gameForm.hintype1.$error.required">
+                                                        Type is required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-5 col-lg-5 col-md-5 col-xs-5 ">
+                                                <span class="tag">Points:</span>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-6 col-md-6 col-xs-6">
+                                                <input type="text" name="points1" ng-model="data.points1" placeholder="Points" numbers-only ng-maxlength="5" ng-minlength="1"
+                                                        required>
+                                                <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.points1.$dirty && gameForm.points1.$invalid">
+                                                    <small ng-show="gameForm.points1.$error.required">
+                                                        Challenge Points is required.
+                                                    </small>
+                                                    <small ng-show="gameForm.points1.$error.maxlength">
+                                                        Challenge Points should be of maximum 5 digits.
+                                                    </small>
+                                                    <small ng-show="gameForm.points1.$error.minlength">
+                                                        Challenge Points should be of minimum 2 digit.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="float:right; margin: 0 30px 0 0;">
+                                    <div class="material-switch mDetails:-t-10">
+                                        <input id="lockOrder1{{$index}}" type="checkbox" ng-model="data.onOff" name="onOff" ng-change="toggleCheck(data.onOff, $index)"
+                                        />
+                                        <label for="lockOrder1{{$index}}"></label>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group" ng-if="data.onOff">
+                                    <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                        <span class="tag">Name:</span>
+                                    </div>
+                                    <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                        <!-- <summernote  ng-model="data.name1" config="options"> </summernote> -->
+                                        <textarea froala="froalaOptions" ng-model="data.name1"></textarea>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row form-group">
+                                <div ng-if="data.hardonOff == true">
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">
+                                                <span class="tag">Type:</span>
+                                            </div>
+                                            <div class="col-sm-8 col-lg-8 col-md-8 col-xs-8">
+                                                <input type="text" readonly value="Hard">
+                                                <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.hinttype2.$dirty && gameForm.hinttype2.$invalid">
+                                                    <small ng-show="gameForm.hinttype2.$error.required">
+                                                        Type is required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">-->
+                                    <!--<div class="row">-->
+                                    <!--<div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">-->
+                                    <!--<span class="tag">Name:</span>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-sm-8 col-lg-8 col-md-8 col-xs-8">-->
+                                    <!--<input type="text" name="hintname2" ng-model="data.name2" placeholder="Enter hint name" required>-->
+                                    <!--<div class="white-error-email" ng-show="gameForm.$submitted || gameForm.hintname2.$dirty && gameForm.hintname2.$invalid">-->
+                                    <!--<small ng-show="gameForm.hintname2.$error.required">-->
+                                    <!--Hint name is required.-->
+                                    <!--</small>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+
+                                    <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-5 col-lg-5 col-md-5 col-xs-5 ">
+                                                <span class="tag">Points:</span>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-6 col-md-6 col-xs-6">
+                                                <input type="text" name="points2" ng-model="data.points2" placeholder="Points" numbers-only ng-maxlength="5" ng-minlength="1"
+                                                        required>
+                                                <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.points2.$dirty && gameForm.points2.$invalid">
+                                                    <small ng-show="gameForm.points2.$error.required">
+                                                        Challenge Points is required.
+                                                    </small>
+                                                    <small ng-show="gameForm.points2.$error.maxlength">
+                                                        Challenge Points should be of maximum 5 digits.
+                                                    </small>
+                                                    <small ng-show="gameForm.points2.$error.minlength">
+                                                        Challenge Points should be of minimum 2 digit.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="float:right; margin: 0 30px 0 0;">
+                                    <div class="material-switch m-t-10">
+                                        <input id="lockOrder2{{$index}}" type="checkbox" ng-model="data.hardonOff" name="hardonOff" ng-change="toggleHardCheck(data.hardonOff, $index)"
+                                        />
+                                        <label for="lockOrder2{{$index}}"></label>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group" ng-if="data.hardonOff">
+                                    <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                        <span class="tag">Name:</span>
+                                    </div>
+                                    <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                        <!-- <summernote  ng-model="data.name2" config="options"> </summernote> -->
+                                        <textarea froala="froalaOptions" ng-model="data.name2"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div ng-if="data.toughonOff == true">
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">
+                                                <span class="tag">Type:</span>
+                                            </div>
+                                            <div class="col-sm-8 col-lg-8 col-md-8 col-xs-8">
+                                                <input type="text" readonly value="Too tough">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-5 col-lg-5 col-md-5 col-xs-5 ">
+                                                <span class="tag">Points:</span>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-6 col-md-6 col-xs-6">
+                                                <input type="text" name="points3" ng-model="data.points3" placeholder="Points" numbers-only ng-maxlength="5" ng-minlength="1"
+                                                        required>
+                                                <div class="white-error-email" ng-show="gameForm.$submitted || gameForm.points3.$dirty && gameForm.points3.$invalid">
+                                                    <small ng-show="gameForm.points3.$error.required">
+                                                        Challenge Points is required.
+                                                    </small>
+                                                    <small ng-show="gameForm.points3.$error.maxlength">
+                                                        Challenge Points should be of maximum 5 digits.
+                                                    </small>
+                                                    <small ng-show="gameForm.points3.$error.minlength">
+                                                        Challenge Points should be of minimum 2 digit.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="float:right; margin: 0 30px 0 0;">
+                                    <div class="material-switch m-t-10">
+                                        <input id="lockOrder3{{$index}}" type="checkbox" ng-model="data.toughonOff" name="toughonOff" ng-change="toggleToughCheck(data.toughonOff, $index)"
+                                        />
+                                        <label for="lockOrder3{{$index}}"></label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" ng-if="data.toughonOff == true">
+                                    <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                        <span class="tag">Name:</span>
+                                    </div>
+                                    <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                        <!-- <summernote  ng-model="data.name3" config="options"> </summernote> -->
+                                        <textarea froala="froalaOptions" ng-model="data.name3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <button class="theme-btn" type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

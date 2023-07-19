@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html ng-app="beyondTheWalls">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Page title set in pageTitle directive -->
+    <title page-title></title>
+    <!-- Font awesome -->
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tui-image-editor@3.2.2/dist/tui-image-editor.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,700,700i"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      media="screen"
+      href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css"
+    />
+
+    <!-- Bootstrap and Fonts -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Main Inspinia CSS files -->
+    <link href="css/animate.css" rel="stylesheet" />
+    <link href="css/angular-ui-switch.css" rel="stylesheet" />
+    <link id="loadBefore" href="css/style.css" rel="stylesheet" />
+    <link href="css/login.css" rel="stylesheet" />
+    <link href="css/custom.css" rel="stylesheet" />
+    <link href="js/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+    <link href="js/plugins/please-wait/please-wait.css" rel="stylesheet" />
+
+    <link
+      href="js/plugins/dataTables/dataTables.bootstrap.css"
+      rel="stylesheet"
+    />
+
+    <link
+      href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.rawgit.com/summernote/summernote/v0.7.3/dist/summernote.css"
+    />
+    <!-- Include Froala Editor style. -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/froala_editor.pkgd.min.css"
+    />
+    <!-- <link rel="stylesheet" type="text/css" href="css/froala_style.min.css" /> -->
+
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.5.1/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.5.1/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+    <script src="//cdn.embedly.com/widgets/platform.js"></script>
+    <script src="//raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fabric.js/1.6.7/fabric.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/tui-code-snippet@1.4.0/dist/tui-code-snippet.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/tui-image-editor@3.2.2/dist/tui-image-editor.min.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/modal-video@2.0.1/css/modal-video.min.css">
+    <script src="https://unpkg.com/modal-video@2.0.1/js/modal-video.min.js"></script>
+
+    <!-- Start of froala Zendesk Widget script -->
+    <script>/*<![CDATA[*/window.zEmbed || function (e, t) { var n, o, d, i, s, a = [], r = document.createElement("iframe"); window.zEmbed = function () { a.push(arguments) }, window.zE = window.zE || window.zEmbed, r.src = "javascript:false", r.title = "", r.role = "presentation", (r.frameElement || r).style.cssText = "display: none", d = document.getElementsByTagName("script"), d = d[d.length - 1], d.parentNode.insertBefore(r, d), i = r.contentWindow, s = i.document; try { o = s } catch (e) { n = document.domain, r.src = 'javascript:var d=document.open();d.domain="' + n + '";void(0);', o = s } o.open()._l = function () { var e = this.createElement("script"); n && (this.domain = n), e.id = "js-iframe-async", e.src = "https://assets.zendesk.com/embeddable_framework/main.js", this.t = +new Date, this.zendeskHost = "froala.zendesk.com", this.zEQueue = a, this.body.appendChild(e) }, o.write('<body onload="document._l();">'), o.close() }();
+      /*]]>*/</script>
+    <!-- End of froala Zendesk Widget script -->
+    
+    <!-- Mailchimp + Google remarketing -->
+    <script id="mcjs">!function (c, h, i, m, p) { m = c.createElement(h), p = c.getElementsByTagName(h)[0], m.async = 1, m.src = i, p.parentNode.insertBefore(m, p) }(document, "script", "https://chimpstatic.com/mcjs-connected/js/users/e021010a2fce5361b25ee68dd/55d90af1a800d149d85982971.js");</script>
+    </head>
+    
+    <body>
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5GTPHC3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+  </head>
+
+  <body>
+    <!-- Main view  -->
+    <div ui-view></div>
+    <!-- jQuery and Bootstrap -->
+    <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
+    <script src="js/vendor/jquery/jquery.js"></script>
+
+    <script src="js/plugins/jquery-ui/jquery-ui.js"></script>
+    <!-- <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> -->
+    <script src="js/vendor/bootstrap.js"></script>
+    <!--<script src="js/plugins/summernote.js"></script>-->
+    <!--<script src="js/plugins/bootstrap/bootstrap.min.js"></script>-->
+
+    <!-- MetsiMenu -->
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+    <!-- SlimScroll -->
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Peace JS -->
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+    <!-- sweetalert -->
+    <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+
+    <!-- Main Angular scripts-->
+    <script src="js/plugins/angular/angular.min.js"></script>
+    <script src="js/plugins/angular/angular-cookies.min.js"></script>
+    <script src="js/plugins/angular/angular-messages.min.js"></script>
+    <script src="js/plugins/angular/angular-animate.min.js"></script>
+    <script src="js/plugins/oclazyload/dist/ocLazyLoad.min.js"></script>
+    <script src="js/plugins/ui-router/angular-ui-router.min.js"></script>
+    <script src="js/plugins/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="js/plugins/sweetalert/angular-sweetalert.min.js"></script>
+    <script src="js/angular-ui-switch.js"></script>
+    <script src="js/angular-drag-and-drop-lists.js"></script>
+    <!-- Anglar App Script -->
+    <script src="js/app.js"></script>
+    <script src="js/config.js"></script>
+    <!-- constants -->
+    <script src="js/constants.js"></script>
+    <script src="js/sortable.js"></script>
+    <!-- directives -->
+    <script src="js/directives/directives.js"></script>
+    <!-- services -->
+    <script src="js/services/services.js"></script>
+    <!-- export to excel function -->
+    <script src="js/plugins/export/export.js"></script>
+    <!-- providers -->
+    <script src="js/providers/providers.js"></script>
+    <!-- datatables plugins -->
+    <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <script src="js/plugins/please-wait/please-wait.js"></script>
+    <script src="js/plugins/angular-daterange-picker/moment.js"></script>
+    <!--alaSql-->
+    <script src="js/plugins/alasql/alasql.min.js"></script>
+
+    <!--=================Summer Note Html View======================-->
+    <script
+      defer
+      src="https://cdn.rawgit.com/summernote/summernote/v0.7.3/dist/summernote.min.js"
+    ></script>
+
+    <script
+      defer
+      src="https://cdn.rawgit.com/summernote/angular-summernote/0.7.1/dist/angular-summernote.min.js"
+    ></script>
+
+    <!-- Include Froala Editor JS files. -->
+    <!-- <script src="js/froala_editor.pkgd.min.js"></script> -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@2.5.1//js/froala_editor.pkgd.min.js"></script>
+    <script src="src/froala-sanitize.js"></script>
+    <script src="src/angular-froala.js"></script>
+
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/js/froala_editor.pkgd.min.js"></script> -->
+    <!-- Initialize the editor. -->
+    
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0TRfOlD0AgOtP4Myg9zLIy2qsOWnou7s&libraries=places"></script>
+    <script defer src="https://code.angularjs.org/1.4.0-rc.0/angular-sanitize.js" ></script>
+    <script src="https://rawgit.com/ismarslomic/angular-read-more/master/dist/readmore.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-drag-and-drop-lists/2.1.0/angular-drag-and-drop-lists.js"></script>
+
+<script>
+    $(function() {
+     $('textarea').froalaEditor({
+       // Set the file upload URL.
+       imageUploadURL: 'image_upload',
+       imageUploadParams: {
+         id: 'my_editor'
+       }
+     })
+   });
+ </script>
+
+  </body>
+</html>

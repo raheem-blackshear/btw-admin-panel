@@ -1,0 +1,48 @@
+<h1 id="btw-title">Beyond The Walls</h1>
+<div class="row-padding">
+    <div class="col-md-3 col-lg-4 col-sm-3 col-xs-0"></div>
+    <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12">
+        <div class="login-container login-w3">
+            <h2 id="loginNow">Login Now</h2>
+            <form class="loginForm" name="loginForm" novalidate ng-submit="login(loginForm.$valid)">
+                <div class="row form-group">
+                    <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">
+                        <span class="tag">Email:</span>
+                    </div>
+                    <div class="col-sm-8 col-lg-8 col-md-8 col-xs-8">
+                        <input type="email" name="email" class="name" ng-model="user.email"
+                               placeholder="Enter Email" ng-pattern="/^.+@.+\..+$/" required>
+                        <div class="white-error-email"
+                             ng-show="loginForm.$submitted || loginForm.email.$dirty && loginForm.email.$invalid">
+                            <small ng-show="loginForm.email.$error.required">
+                                Email is required.
+                            </small>
+                            <small ng-show="loginForm.email.$invalid && !loginForm.email.$error.required">
+                                Please insert a valid email.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">
+                        <span class="tag">Password:</span>
+                    </div>
+                    <div class="col-sm-8 col-lg-8 col-md-8 col-xs-8">
+                        <input type="password" name="password" class="password" ng-model="user.password" placeholder="Enter Password"
+                               ng-space required>
+                        <div class="white-error-password"
+                             ng-show="loginForm.$submitted || loginForm.password.$dirty && loginForm.password.$invalid">
+                            <small ng-show="loginForm.password.$error.required">
+                                Password is required.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="login-w3">
+                    <button type="submit" class="login-button">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-3 col-lg-4 col-sm-3 col-xs-0"></div>
+</div>

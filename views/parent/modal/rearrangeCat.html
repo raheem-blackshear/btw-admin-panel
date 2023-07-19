@@ -1,0 +1,29 @@
+<!--<script type="text/ng-template" id="challengeSwap.html">-->
+    <div class="col-sm-12">
+        <h2 style="padding: 0 0 20px;">Challenge Names</h2>
+        <ul ui-sortable="sortableOptions" ng-model="list" class="list">
+            <li ng-repeat="item in list" class="item">
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="row form-group">
+                            <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">
+                                <div class="">
+                                    <span class="tag">Name:</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 col-lg-8 col-md-8 col-xs-8">
+                                <input type="text" name="name" ng-model="item.name"
+                                       placeholder="Enter Challenge Name" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="customBtn btn btn-fill " ng-click="cancel() ">Close</button>
+    </div>
+<!--</script>-->

@@ -1,0 +1,81 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="ibox float-e-margins shadow">
+                <div class="ibox-title">
+                    <h5>Add Admin</h5>
+                    <div ibox-tools></div>
+                </div>
+                <div class="ibox-content">
+                    <form novalidate name="gameForm" ng-submit="addAdmin(gameForm.$valid)">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Name:</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <input type="text" name="name" ng-model="settings.name"
+                                                       placeholder="Enter Name" required>
+                                                <div class="white-error-email"
+                                                     ng-show="gameForm.$submitted || gameForm.name.$dirty && gameForm.name.$invalid">
+                                                    <small ng-show="gameForm.name.$error.required">
+                                                        Please enter name.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-4">
+                                                <span class="tag">Email:</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <input type="text" name="email" ng-model="settings.email"
+                                                       placeholder="Enter Email" required>
+                                                <div class="white-error-email"
+                                                     ng-show="gameForm.$submitted || gameForm.email.$dirty && gameForm.email.$invalid">
+                                                    <small ng-show="gameForm.email.$error.required">
+                                                        Please enter email.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-4">
+                                                <span class="tag">Password:</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <input type="password" name="password" ng-model="settings.password"
+                                                       placeholder="Enter Password" required>
+                                                <div class="white-error-email"
+                                                     ng-show="gameForm.$submitted || gameForm.password.$dirty && gameForm.password.$invalid">
+                                                    <small ng-show="gameForm.password.$error.required">
+                                                       Please enter password.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <button class="theme-btn" type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

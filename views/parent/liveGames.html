@@ -1,0 +1,58 @@
+<div class="wrapper wrapper-content animated">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="ibox float-e-margins shadow">
+                <div class="ibox-title">
+                    <div class="col-md-6">
+                        <h5>Live Games</h5>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table id="tableId" class="table table-striped table-bordered dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>User Image</th>
+                                <th>User Name</th>
+                                <!-- <th>Challenge Name</th> -->
+                                <th>Game Name</th>
+                                <th>Active ? </th>
+                                <th>Start Time</th>
+                                <th>Time Left</th>
+                                <!-- <th>Timer</th> -->
+                                <!-- <th>Paused</th> -->
+                                <!--<th>Action</th>-->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="data in allData">
+                                <td>
+                                    <!-- <img ng-src="{{ data.userId.profilePic.thumbnail || 'img/no-image-available.jpg' }}" class="img-responsive" style="width: 80px;height: 80px;" /> -->
+                                    <img ng-src="{{ data.teamImage.thumbnail || 'img/no-image-available.jpg' }}" class="img-responsive" style="width: 80px;height: 80px;" />
+                                </td>
+                                <td>{{ data.username || "N.A." }}</td>
+                                <!-- <td>{{ data.challengeId.name || "N.A." | htmlToPlaintext}}</td> -->
+                                <td>{{ data.gamename || "N.A." }}</td>
+                                <!-- <td ng-if="data.paused"><button class="btn theme-btn ng-binding" ng-click="countdown()" type="button">Resume</button></td> -->
+                                <!-- <td ng-else><button class="btn theme-btn ng-binding" ng-click="stop()" type="button">Stop</button></td> -->
+                                <td ng-if="data.pause">NO</td>
+                                <td ng-if="data.pause == false">YES</td>
+                                <td>
+                                    {{ data.startTime || "N.A." | date: "MM/dd/yyyy, hh:mm a" }}
+                                </td>
+                                <!-- <td ng-if="data.pause">{{ data.timeLeft || "N.A." | timeFormat }}</td> -->
+                                <td ng-if="data.pause">
+                                    <span ng-if="data.timeLeft > 0">{{ data.timeLeft | timeFormat }}</span>
+                                    <span ng-if="data.timeLeft == 0">{{ "N.A." }}</span>
+                                </td>
+                                <td ng-if="data.pause == false">
+                                    <!-- {{ data.timeLeft | timeFormat }} -->
+                                    {{ data.timeLeft | timeFormat }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

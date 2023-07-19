@@ -1,0 +1,97 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="ibox float-e-margins shadow">
+                <div class="ibox-title">
+                    <h5>Team List</h5>
+                    <div ibox-tools></div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row table-size-selector">
+                        <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <ui-select ng-model="game.selected" theme="bootstrap" title="Select Game" ng-change="viewChallenge()">
+                                <ui-select-match placeholder="Select a game in the list...">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="data in game.data | filter: {name: $select.search}">
+                                    <div ng-bind-html="data.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <ui-select ng-model="challenge.details" theme="bootstrap" title="Select Challenge">
+                                <ui-select-match placeholder="Select a challenge in the list...">{{$select.selected.name | htmlToPlaintext}}</ui-select-match>
+                                <ui-select-choices repeat="data in challenge.data | filter: {name: $select.search}">
+                                    <div ng-bind-html="data.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                            <button class="filter-btn" type="button" ng-click="filterTeam()">
+                                Filter
+                            </button>
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <table id="teamList" class="table table-striped table-bordered dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Team Name</th>
+                                        <th>Game Name</th>
+                                        <th>Total Points</th>
+                                        <th>Type</th>
+                                        <th>Registration Date</th>
+                                        <th>Members</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="data in teamList">
+                                        <td>
+                                            <a ng-click="openLightboxModal($index)">
+                                                <img ng-src="{{data.teamImage.original || 'img/no-image-available.jpg'}}" class="img-responsive" style="width: 80px;height: 80px;">
+                                            </a>
+                                        </td>
+                                        <td>{{data.name || 'N.A.'}}</td>
+                                        <td>{{data.gameId.name || 'N.A.'}}</td>
+                                        <td>{{data.totalPoints || 'N.A.'}}</td>
+                                        <td>{{data.type || 'N.A.'}}</td>
+                                        <td>{{data.createdAt | date}}</td>
+                                        <td>
+                                            <button class="theme-btn" type="button" ng-click="listMembers(data.member)">View</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/ng-template" id="listmembers-template.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Team Members</h3>
+    </div>
+    <div class="modal-body">
+        <table class="table dataTables-example table-popup">
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="data in list">
+                    <td>{{$index+1}}</td>
+                    <td>{{data.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <button class="btn theme-btn pull-right" type="button" ng-click="cancel()" style="width: 90px;">Cancel</button>
+    </div>
+</script>

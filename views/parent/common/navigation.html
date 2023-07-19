@@ -1,0 +1,76 @@
+<nav class="navbar-default navbar-static-side" role="navigation" id="side-navigation" ng-controller="Sidecontroller">
+    <div class="sidebar-collapse">
+        <ul side-navigation class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element" dropdown>
+                    <a class="dropdown-toggle" dropdown-toggle href>
+                        <p class="chillax-logo">BTW</p>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a href="">Logout</a></li>
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    BTW
+                </div>
+            </li>
+            <!--<li ui-sref-active="active">-->
+                <!--<a ui-sref="parent.dashboard"><i class="fa fa-diamond"></i> <span class="nav-label">Dashboard</span> </a>-->
+            <!--</li>-->
+            <li ng-class="{active: $state.includes('game')}">
+                <a href="index.html"><i class="fa fa-database"></i> <span class="nav-label">Game</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('game')}">
+                    <li ui-sref-active="active"><a ui-sref="game.createGame">Create</a></li>
+                    <!--<li ui-sref-active="active"><a ui-sref="game.list">List</a></li>-->
+                    <li ui-sref-active="active"><a ui-sref="game.gameList({pageNo:1,limit:10,maxSize:5})">List</a></li>
+                </ul>
+            </li>
+            <li ng-class="{active: $state.includes('players')}">
+                <a href="index.html"><i class="fa fa-users"></i> <span class="nav-label">Players</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('players')}">
+                    <li ui-sref-active="active"><a ui-sref="player.playerList">List</a></li>
+                </ul>
+            </li>
+
+            <li ng-class="{active: $state.includes('category')}">
+                <a href="index.html"><i class="fa fa-database"></i> <span class="nav-label">Category</span>
+                    <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('category')}">
+                    <li ui-sref-active="active"><a ui-sref="category.list1({level:1})">Level 1</a></li>
+                    <li ui-sref-active="active"><a ui-sref="category.list2({level:2})">Level 2</a></li>
+                    <li ui-sref-active="active"><a ui-sref="category.list3({level:3})">Level 3</a></li>
+                </ul>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="parent.teamList"><i class="fa fa-diamond"></i> <span class="nav-label">Team List</span> </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="parent.feeds"><i class="fa fa-video-camera"></i> <span class="nav-label">Feeds List</span> </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="parent.settings"><i class="fa fa-video-camera"></i> <span class="nav-label">Settings</span> </a>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="live.liveGames"><i class="fa fa-diamond"></i> <span class="nav-label">Live Games</span> </a>
+            </li>
+
+
+
+
+            <li ng-class="{active: $state.includes('admin')}" ng-show="newRole == 'true'">
+                <a href="index.html"><i class="fa fa-database"></i> <span class="nav-label">Admin</span>
+                    <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('admin')}">
+                    <li ui-sref-active="active"><a ui-sref="parent.addAdmin">Create</a></li>
+                    <li ui-sref-active="active"><a ui-sref="parent.adminList({pageNo:1,limit:10,maxSize:5})">List</a></li>
+                </ul>
+            </li>
+
+            <!--<li ui-sref-active="active">-->
+                <!--<a ui-sref="parent.addAdmin"><i class="fa fa-video-camera"></i> <span class="nav-label">Add Sub Admin</span> </a>-->
+            <!--</li>-->
+        </ul>
+    </div>
+</nav>
